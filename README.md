@@ -9,9 +9,11 @@ has been no input for a specifed timeout, independent of anything using the disp
 at the moment. It will then turn the touchscreen back on when input is received. The
 timeout period is set by a command-line argument.
 
-**Note:** This does not stop the event from getting to whatever is running on the
+~~**Note:** This does not stop the event from getting to whatever is running on the
 display. Whatever is running will still receive an event, even if the display
-is off.
+is off.~~
+
+**Note:** Events are intercepted while screen is off in this fork
 
 The program will use a linux event device like `/dev/input/event0` to receive events
 from the touchscreen, keyboard, mouse, etc., and `/sys/class/backlight/rpi-backlight/bl_power`

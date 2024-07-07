@@ -135,7 +135,13 @@ int main(int argc, char* argv[]){
                         }
                 }
 
-                for (i = 0; i < num_dev; i++) {               
+                for (i = 0; i < num_dev; i++) {
+                        if(on == '1') {
+                                ioctl(eventfd[i], EVIOCGRAB, 1);
+                        } else {
+                                ioctl(eventfd[i], EVIOCGRAB, 0);
+                        }
+
                         event_size = read(eventfd[i], event, size*64);
                         if(event_size != -1) {
                                 printf("%s Value: %d, Code: %x\n", device[i], event[0].value, event[0].code);
@@ -146,7 +152,7 @@ int main(int argc, char* argv[]){
                                         on = '0';
                                         write(lightfd, &on, sizeof(char));
                                 }
-                        }
+                        }                     
                 }
 
                 if(difftime(now, touch) > timeout) {

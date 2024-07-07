@@ -136,6 +136,7 @@ int main(int argc, char* argv[]){
                 }
 
                 for (i = 0; i < num_dev; i++) {
+			// grab input events if screen off
                         if(on == '1') {
                                 ioctl(eventfd[i], EVIOCGRAB, 1);
                         } else {
